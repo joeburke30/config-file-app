@@ -21,10 +21,10 @@ public class SimpleService {
         StringBuffer sb = new StringBuffer();
         try {
             // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
-                    .getConnection("jdbc:mysql://192.168.72.132:3306/demo","root","mypassword");
+                    .getConnection("jdbc:mysql://192.168.72.132:3306/demo","user1","MyPassword");
 
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
