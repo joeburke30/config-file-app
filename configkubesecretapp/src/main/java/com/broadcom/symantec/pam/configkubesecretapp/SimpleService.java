@@ -1,5 +1,6 @@
 package com.broadcom.symantec.pam.configkubesecretapp;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,12 @@ import java.util.Date;
 @CrossOrigin
 public class SimpleService {
     
+    @Value("${SECRETS_DEMO_USER}")
+    private String user;
+
+    @Value("${SECRETS_DEMO_USER_PASSWD}")
+    private String pw;
+
     @GetMapping("/")
     public String home () throws Exception {
         Connection connect = null;
@@ -24,8 +31,8 @@ public class SimpleService {
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
-                    .getConnection("jdbc:mysql://192.168.72.132:3306/demo","user1","MyPassword");
-
+                    .getConnection("jdbc:mysql://192.168.72.132:3306/demo",user,pw);
+            //        .getConnection("jdbc:mysql://192.168.72.132:3306/demo","user1","MyPassword");
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
             // Result set get the result of the SQL query
