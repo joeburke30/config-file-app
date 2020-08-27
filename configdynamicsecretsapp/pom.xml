@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.broadcom.symantec.pam</groupId>
-	<artifactId>configkubesecretapp</artifactId>
+	<artifactId>configdynamicsecretapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>configkubesecretapp</name>
+	<name>configdynamicecretapp</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
