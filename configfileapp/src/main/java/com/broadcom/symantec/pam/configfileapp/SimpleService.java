@@ -24,7 +24,7 @@ public class SimpleService {
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
-                    .getConnection("jdbc:mysql://192.168.72.132:3306/demo","user1","MyPassword");
+                    .getConnection("jdbc:mysql://192.168.72.132:3306/demo","demo1","MyPassword");
 
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
@@ -41,10 +41,11 @@ public class SimpleService {
                 int id = resultSet.getInt("id");
                 Date date = resultSet.getDate("created_at");
 
-                sb.append(name + " is a " + desc + " with employee id = "+ id + " hired on : " + date + "\n");
+                sb.append("Local Config > " + name + " is a " + desc + " with employee id = "+ id + " hired on : " + date + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
+            sb.append ("Local Config > " + e.getMessage());
         } finally {
             if (resultSet != null) {
                 resultSet.close();

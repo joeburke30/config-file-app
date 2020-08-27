@@ -48,10 +48,11 @@ public class SimpleService {
                 int id = resultSet.getInt("id");
                 Date date = resultSet.getDate("created_at");
 
-                sb.append(name + " is a " + desc + " with employee id = "+ id + " hired on : " + date + "\n");
+                sb.append("Kube Secret  >  " + name + " is a " + desc + " with employee id = "+ id + " hired on : " + date + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
+            sb.append ("Kube Secret  >  " + e.getMessage());
         } finally {
             if (resultSet != null) {
                 resultSet.close();

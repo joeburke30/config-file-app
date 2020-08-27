@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: pam-a2a
+spec:
+  selector:
+    matchLabels:
+      app: pam-a2a
+  template: #required fields
+    metadata:
+      labels:
+        app: pam-a2a
+    spec:
+      hostNetwork: yes
+      containers:
+       - name: pam-a2a
+         image: "symantec/pam-a2a:3.5.0"
+         imagePullPolicy: Never
+         env:
+         - name: PAM_URL
+           value: "192.168.72.160"
+         - name: PAM_D1_PORT
+           value: "28088"
+         - name: PAM_D2_PORT
+           value: "28089"
+         - name: PAM_SCRIPT_PORT
+           value: "28090"
+         - name: PAM_SCRIPT_ADDRESS
+           value: "0.0.0.0"
+         ports:
+         - name: pam-port
+           containerPort: 28089
+           hostPort: 28089
+         - name: a2a-port
+           containerPort: 28088
+           hostPort: 28088
+         - name: http-port
+           containerPort: 28090
+           hostPort: 28090
+
