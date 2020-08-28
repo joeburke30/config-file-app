@@ -21,7 +21,7 @@ import java.util.Date;
 public class SimpleService {
 
     @Value("${ALIAS}")
-    String alias;
+    String alias = "alias1";
     
     private static final String U_START = "<U>";
     private static final String U_END = "</U>";
@@ -34,13 +34,19 @@ public class SimpleService {
         
         String uri = "http://localhost:28090/requestScript/retrieveCredentials?aliasName="+ alias + "&contentType=xml";
 
+        System.out.println ("alias="+alias);
+        System.out.println ("uri  ="+uri);
         HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
         HttpRequest request = HttpRequest.newBuilder(URI.create(uri)).GET().build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+	System.out.println("Response = " + response);
         String responseBody = response.body();
 
-		String user =responseBody.substring(responseBody.indexOf(U_START),responseBody.indexOf(U_END));
-		String pw   =responseBody.substring(responseBody.indexOf(P_START),responseBody.indexOf(P_END));
+		String user =responseBody.substring(
+                                  (responseBody.indexOf(U_START)+U_START.length()),
+                                  responseBody.indexOf(U_END)
+                             );
+		String pw   =responseBody.substring((responseBody.indexOf(P_START)+P_START.length()),responseBody.indexOf(P_END));
      
         System.out.println("u="+user+"  p="+pw);
 

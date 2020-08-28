@@ -1,0 +1,9 @@
+in each subfolder, 
+./_build.sh
+./_publish.sh
+./_deploy.sh
+
+IPs are fixed.   creds are local to machine
+
+once all 3 and a2a have been deployed.
+run each loop from this directory to watch it run side by side
